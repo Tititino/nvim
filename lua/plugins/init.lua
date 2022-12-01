@@ -27,7 +27,6 @@ return require('packer').startup(function()
         use 'preservim/tagbar' 
         use 'junegunn/fzf.vim'
 	use 'lervag/vimtex'
-	use 'williamboman/mason.nvim'
    	if ensure_packer() then	
 		require('packer').sync()
 	end
