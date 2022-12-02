@@ -156,7 +156,7 @@ local base_group = {
 	Statement = { fg = black, bold = true },
 	Directory = { fg = black },
 
-	String = { fg = black},
+	String = { fg = black, italic = true },
 	Number = { fg = black },
 	Comment = { fg = fg3, italic = true },
 	Constant = { fg = black },

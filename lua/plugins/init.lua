@@ -27,8 +27,14 @@ return require('packer').startup(function()
         use 'preservim/tagbar' 
         use 'junegunn/fzf.vim'
 	use 'lervag/vimtex'
+	use {
+		'MrcJkb/haskell-tools.nvim',
+		requires = {
+    			'neovim/nvim-lspconfig',
+    			'nvim-lua/plenary.nvim'
+		}
+	}
    	if ensure_packer() then	
 		require('packer').sync()
 	end
 end)
-
