@@ -129,3 +129,14 @@ vim.keymap.set('n', '<leader>rf', function()
   	ht.repl.toggle(vim.api.nvim_buf_get_name(0))
 end, def_opts)
 vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
+
+
+vim.api.nvim_create_autocmd('FileType', {
+  	pattern = { "*" },
+  	callback = function(args)
+    	local ft = vim.bo[args.buf].filetype
+    		if ft == 'haskell' then
+			set.expandtab = true
+		end
+  	end 
+})
