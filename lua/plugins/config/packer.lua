@@ -11,7 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function()
+require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
 	use 'tpope/vim-fugitive' 

@@ -1,5 +1,6 @@
 local ok, nvim_tree = pcall(require, 'nvim-tree')
 if not ok then 
+	vim.notify('Error with module nvim-tree (' .. nvim-tree .. ')', 'Error')
 	return
 end
 

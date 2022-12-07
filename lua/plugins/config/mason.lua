@@ -1,5 +1,8 @@
 local ok, mason = pcall(require, 'mason')
-if not ok then return end
+if not ok then 
+	vim.notify('Error with module mason (' .. mason .. ')', 'Error')
+	return
+end
 
 mason.setup({
   	ui = {
