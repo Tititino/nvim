@@ -13,7 +13,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function()
+require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
 	use 'tpope/vim-fugitive' 
@@ -27,11 +27,13 @@ return require('packer').startup(function()
    	use 'is0n/jaq-nvim'
    	use { 
 		'williamboman/mason.nvim',
-		config = function() require('config.mason') end 
+		config = function() 
+			require('plugin.config.mason') 
+		end 
 	}
 	use {
 		'nvim-tree/nvim-tree.lua',
-		config = function() require('config.nvim-tree') end 
+		config = function() require('plugin.config.nvim-tree') end 
 	}
 
 	use 'RRethy/vim-hexokinase'
@@ -52,7 +54,8 @@ return require('packer').startup(function()
     			'neovim/nvim-lspconfig',
     			'nvim-lua/plenary.nvim'
 		},
-		config = function() require('config.haskell-tools') end 
+		ft = {'hs', 'lhs'},
+		config = function() require('plugin.config.haskell-tools') end 
 	}
 	-- https://github.com/nvim-telescope/telescope.nvim
 	use {
@@ -61,7 +64,7 @@ return require('packer').startup(function()
 	  	requires = { 
 			'nvim-lua/plenary.nvim'
 		},
-		config = function() require('config.telescope') end 
+		config = function() require('plugin.config.telescope') end 
 	}
 
 	use 'luc-tielen/telescope_hoogle'
