@@ -1,3 +1,5 @@
+dprint('config nvim-tree')
+
 local ok, nvim_tree = pcall(require, 'nvim-tree')
 if not ok then 
 	vim.notify('Error with module nvim-tree (' .. nvim-tree .. ')', 'Error')
@@ -10,7 +12,7 @@ nvim_tree.setup({
 	auto_reload_on_write = true,
 	-- disable_netrw = true,
 	-- hijack_cursor = true,
-	-- hijack_netrw = true, -- overriden if 'disable_netrw = true'
+	hijack_netrw = true, -- overriden if 'disable_netrw = true'
 	-- hijack_unnamed_buffer_when_opening = true,
 	-- ignore_buffer_on_setup = false,
 	-- open_on_setup = true,
@@ -39,12 +41,12 @@ nvim_tree.setup({
 	        		{ key = { "l", "<CR>", "o" }, action = "edit" },
 	        		{ key = { "-", "<BS>" }, action = "dir_up" },
 	        		{ key = { "<Esc>", "q" }, action = "close" },
-	        		{ key = "h", action = "close_node" },
+	        		{ key = "x", action = "close_node" },
 	        		{ key = "L", action = "cd" },
 	        		{ key = ".", action = "cd" },
 	        		{ key = "O", action = "system_open" },
 	        		{ key = "s", action = "split" },
-	        		{ key = "<C-h>", action = "collapse_all" },
+	        		{ key = "<C-x>", action = "collapse_all" },
 	        		{ key = "v", action = "vsplit" },
 	        		{ key = "V", action = "vsplit_preview", action_cb = vsplit_preview },
 	        		{ key = "p", action = "preview" },
@@ -57,15 +59,15 @@ nvim_tree.setup({
 	renderer = {
 	    	add_trailing = true,
 	    	group_empty = false,
-	    	highlight_git = false,
+	    	highlight_git = true,
 	    	highlight_opened_files = "name",
 	    	root_folder_modifier = ":t",
 	    	indent_markers = {
 	      		enable = true,
 	      		icons = {
-	        		corner = '-',
-	        		edge = '|',
-	        		none = '|',
+	        		corner = '└',
+	        		edge = '│',
+	        		none = '│',
 	      		},
 		},
 	    	icons = {
@@ -84,14 +86,14 @@ nvim_tree.setup({
 	          			ignored = ' ',
 	        		},
 	        		folder = {
-	          			arrow_open = '|',
-	          			arrow_closed = '|',
-	          			default = '>',
-	          			open = 'v',
-	          			empty = 'v',
-	          			empty_open = 'v',
-	          			symlink = ' ',
-	          			symlink_open = ' ',
+	          			arrow_open = '├',
+	          			arrow_closed = '│',
+	          			default = '▸',
+	          			open = '▾',
+	          			empty = '▹',
+	          			empty_open = '▿',
+	          			symlink = '~>',
+	          			symlink_open = '<~',
 	        		},
 	      		},
 	    	},

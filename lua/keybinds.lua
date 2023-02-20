@@ -1,4 +1,9 @@
+dprint('keybinds')
 -- keymap('n', '<Leader><Space>', ':set hlsearch!<CR>', { noremap = true, silent = true })
+
+function keymap(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
 
 vim.g.mapleader = " "
 keymap('n', '<leader>q', ':q!<CR>', {noremap = true, silent = true})
@@ -27,18 +32,25 @@ keymap('n', '<A-k>', '<C-w>k', { noremap = true, silent = true })
 keymap('n', '<A-l>', '<C-w>l', { noremap = true, silent = true })
 keymap('n', '<A-h>', '<C-w>h', { noremap = true, silent = true })
 
-
 keymap('n', '<C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
 
 keymap('n', '<F3>', ':TagbarToggle<CR>', { noremap = true, silent = true })
 
 -- esc in terminal
 keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
-
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- local al = require('align')
+-- vim.keymap.set('x', 'aa', function() require('align').align_to_char(1, true)             end, { noremap = true, silent = true }) -- Aligns to 1 character, looking left
+-- vim.keymap.set('x', 'as', function() align.align_to_char(2, true, true)       end, { noremap = true, silent = true }) -- Aligns to 2 characters, looking left and with previews
+-- vim.keymap.set('x', 'aw', function() align.align_to_string(false, true, true) end, { noremap = true, silent = true }) -- Aligns to a string, looking left and with previews
+-- vim.keymap.set('x', 'ar', function() align.align_to_string(true, true, true)  end, { noremap = true, silent = true }) -- Aligns to a Lua pattern, looking left and with previews
+
+
+-- change working directory to the location of the current file 
+keymap('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true, silent = true} )

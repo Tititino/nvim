@@ -1,3 +1,5 @@
+dprint('mason')
+
 local ok, mason = pcall(require, 'mason')
 if not ok then 
 	vim.notify('Error with module mason (' .. mason .. ')', 'Error')

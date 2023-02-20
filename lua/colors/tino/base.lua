@@ -1,8 +1,7 @@
 -------------------------------------
 --  File         : base.lua
---  Description  : base colors palette for knvim colorscheme
---  Author       : Kevin
---  Last Modified: 20 Oct 2022, 10:56
+--  Description  : base colors palette 
+--  Author       : Tino 
 -------------------------------------
 
 local colors = require('colors.tino.colors')
@@ -72,13 +71,14 @@ vim.g.terminal_color_14 = aqua
 vim.g.terminal_color_7 = fg4
 vim.g.terminal_color_15 = fg1
 
-vim.g.colors_name = 'k_theme'
+vim.g.colors_name = 'tino'
 
 local base_group = {
 
 	-- Modes
 	Normal = { fg = black, bg = white },
 	Visual = { reverse = true },
+
 	-- Selection Not-Owned by Vim
 	VisualNOS = { fg = '#244E7A' },
 
@@ -107,7 +107,7 @@ local base_group = {
 	VertSplit = { bg = bg0, fg = fg0 },
 
 	-- Folding
-	Folded = { bg = 'grey13', fg = 'Grey40' },
+	Folded = { bg = bg1, fg = fg1 },
 	FoldColumn = { link = 'Comment' },
 	Conceal = { fg = blue },
 
@@ -187,8 +187,8 @@ local base_group = {
 	Todo = { bg = red, fg = black, bold = true  },
 	Character = { fg = black, italic = true },
 	Float = { fg = black },
-	StorageClass = { link = black },
-	Typedef = { link = black, bold = true },
+	StorageClass = { fg = black },
+	Typedef = { fg = black, bold = true },
 
   	-- Font enhance
 	Bold = { bold = true },

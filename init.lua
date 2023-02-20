@@ -2,35 +2,41 @@
 -- File         : init.lua
 -- Description  : Nvim config
 -- Author       : Tino 
--- Last Modified: 28 Nov 2022
 ----------------------------------------------------
 
+
+function dprint(s)
+--	print(s)
+end
+
+dprint('init')
+
 local set = vim.opt
-set.number = true
-set.relativenumber = true set.tabstop = 8
+vim.opt.number = true
+set.relativenumber = true 
+set.tabstop = 8
 set.mouse = 'a'
 set.background = 'light'
 set.cursorline = true
 set.encoding = 'utf-8'
--- set.signcolumn = 'yes'
 set.termguicolors = true
+set.filetype = 'on'
+
+vim.cmd('colorscheme tino')
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-function keymap(mode, lhs, rhs, opts)
-	vim.keymap.set(mode, lhs, rhs, opts)
-end
 
-local home = os.getenv('HOME')
-local startingPackagePath = package.path
-package.path = home .. '/.config/nvim/' .. package.path
+-- local home = os.getenv('HOME')
+-- local startingPackagePath = package.path
+-- package.path = home .. '/.config/nvim/' .. package.path
 
-require('keybinds')
-require('plugins.config.packer')
-require('plugins')
-require('colors.tino').load()
+-- require('keybinds')
+-- require('plugins.config.packer')
+-- require('plugins')
+-- require('colors.tino').load()
 
 -- require('mason').setup({
 --   	ui = {
@@ -77,46 +83,37 @@ require('colors.tino').load()
 --   	log_level = vim.log.levels.INFO,
 -- })
 
--- made a link to haskell-language-server because it didn't seem to work otherwise,
--- might switch to plain lsp
-local ht = require('haskell-tools')
-local def_opts = { noremap = true, silent = true, }
-ht.setup {
-  	hls = {
-    		-- See nvim-lspconfig's suggested configuration for keymaps, etc.
-    		on_attach = function(client, bufnr)
-      			local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
-      			-- haskell-language-server relies heavily on codeLenses,
-      			-- so auto-refresh (see advanced configuration) is enabled by default
-      			vim.keymap.set('n', '<leader>ca', vim.lsp.codelens.run, opts)
-      			vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
-      			-- default_on_attach(client, bufnr)  -- if defined, see nvim-lspconfig
-    		end,
-  	},
-}
+-- -- made a link to haskell-language-server because it didn't seem to work otherwise,
+-- -- might switch to plain lsp
+-- local ht = require('haskell-tools')
+-- local def_opts = { noremap = true, silent = true, }
+-- ht.setup({
+--   	hls = {
+--     		-- See nvim-lspconfig's suggested configuration for keymaps, etc.
+--     		on_attach = function(client, bufnr)
+--       			local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
+--       			-- haskell-language-server relies heavily on codeLenses,
+--       			-- so auto-refresh (see advanced configuration) is enabled by default
+--       			vim.keymap.set('n', '<leader>ca', vim.lsp.codelens.run, opts)
+--       			vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
+--       			-- default_on_attach(client, bufnr)  -- if defined, see nvim-lspconfig
+--     		end,
+--   	},
+-- })
 
--- Suggested keymaps that do not depend on haskell-language-server
--- Toggle a GHCi repl for the current package
-vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
--- Toggle a GHCi repl for the current buffer
-vim.keymap.set('n', '<leader>rf', function()
-  	ht.repl.toggle(vim.api.nvim_buf_get_name(0))
-end, def_opts)
-vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
+-- -- Suggested keymaps that do not depend on haskell-language-server
+-- -- Toggle a GHCi repl for the current package
+-- vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
+-- -- Toggle a GHCi repl for the current buffer
+-- vim.keymap.set('n', '<leader>rf', function()
+--   	ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+-- end, def_opts)
+-- vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
 
 
-vim.api.nvim_create_autocmd('FileType', {
-  	pattern = { "*" },
-  	callback = function(args)
-    	local ft = vim.bo[args.buf].filetype
-    		if ft == 'haskell' then
-			set.expandtab = true
-		end
-  	end 
-})
 
--- augroup remember_folds
---   autocmd!
---   autocmd BufWinLeave ?* mkview
---   autocmd BufWinEnter ?* silent! loadview
--- augroup END
+-- vim.g.vimtex_view_method = 'zathura'
+-- vim.g.vimtext_compiler_method = 'latexmk'
+
+require('plugin')
+require('keybinds')
