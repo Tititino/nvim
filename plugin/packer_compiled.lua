@@ -97,11 +97,21 @@ _G.packer_plugins = {
     path = "/home/tititi/.local/share/nvim/site/pack/packer/start/jaq-nvim",
     url = "https://github.com/is0n/jaq-nvim"
   },
+  ["literate.vim"] = {
+    loaded = true,
+    path = "/home/tititi/.local/share/nvim/site/pack/packer/start/literate.vim",
+    url = "https://github.com/zyedidia/literate.vim"
+  },
   ["mason.nvim"] = {
     config = { "\27LJ\2\0023\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\24plugin.config.mason\frequire\0" },
     loaded = true,
     path = "/home/tititi/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  neomake = {
+    loaded = true,
+    path = "/home/tititi/.local/share/nvim/site/pack/packer/start/neomake",
+    url = "https://github.com/benekastah/neomake"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -176,8 +186,11 @@ _G.packer_plugins = {
     url = "https://github.com/mg979/vim-visual-multi"
   },
   vimtex = {
-    loaded = true,
-    path = "/home/tititi/.local/share/nvim/site/pack/packer/start/vimtex",
+    config = { "\27LJ\2\2Œ\1\0\0\2\0\b\0\r6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0'\1\a\0=\1\6\0K\0\1\0\vluatex\28vimtext_compiler_method\fzathura\23vimtex_view_method\nlatex\15tex_flavor\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex",
     url = "https://github.com/lervag/vimtex"
   }
 }
@@ -200,8 +213,20 @@ vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType lhs ++once lua require("packer.load")({'haskell-tools.nvim'}, { ft = "lhs" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
 vim.cmd [[au FileType hs ++once lua require("packer.load")({'haskell-tools.nvim'}, { ft = "hs" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/cls.vim]], true)
+vim.cmd [[source /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/cls.vim]]
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/cls.vim]], false)
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], true)
+vim.cmd [[source /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], false)
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tikz.vim]], true)
+vim.cmd [[source /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tikz.vim]]
+time([[Sourcing ftdetect script at: /home/tititi/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tikz.vim]], false)
 vim.cmd("augroup END")
 
 _G._packer.inside_compile = false

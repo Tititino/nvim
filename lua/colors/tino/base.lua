@@ -136,6 +136,7 @@ local base_group = {
 
 	-- TabLine
 	TabLineSel = { link = 'Normal' },
+
 	--[[ TabLineSel = { fg = '#606060', bg = '#303030' }, ]]
 	TabLine = { fg = '#A9A9A9', bg = '#606060' },
 	TabLine_modified_visible = { fg = '#00afff', bg = '#303030' },
@@ -225,11 +226,10 @@ local base_group = {
 	WarningMsg = { fg = '#ff5f00' },
 
 	-- Popup Menu
-	Pmenu = { fg = '#A1A1A1', bg = '#303030' },
-	PmenuSel = { fg = '#F1F1F1', bg = '#015A60' },
-	PmenuSbar = { bg = '#262626' },
-	PmenuThumb = { bg = '#3D3D40' },
-
+	Pmenu = { fg = colors.light4, bg = colors.dark2 },
+	PmenuSel = { fg = colors.neutral_red, bg = colors.light1 },
+	PmenuSbar = { bg = colors.dark1 },
+	PmenuThumb = { bg = colors.dark1 },
 
   	-- Spell
 	SpellRare = { fg = purple, underline = true },

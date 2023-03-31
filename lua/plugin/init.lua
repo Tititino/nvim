@@ -16,38 +16,14 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
-	use 'tpope/vim-fugitive' 
+	use 'Vonr/align.nvim'
 
 	-- https://github.com/tpope/vim-surround: all about "surroundings": parentheses, brackets, quotes, XML tags, and more.
 	-- The plugin provides mappings to easily delete, change and add such surroundings in pairs.
-	use 'tpope/vim-surround' 
 
 	-- use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-   	use 'is0n/jaq-nvim'
-   	use { 
-		'williamboman/mason.nvim',
-		config = function() 
-			require('plugin.config.mason') 
-		end 
-	}
-	use {
-		'nvim-tree/nvim-tree.lua',
-		config = function() require('plugin.config.nvim-tree') end 
-	}
-
-	use 'RRethy/vim-hexokinase'
-	use 'neovim/nvim-lspconfig'
-        use 'tpope/vim-commentary'
-        use 'tc50cal/vim-terminal'
-	use 'mg979/vim-visual-multi'
-        use 'preservim/tagbar' 
         use 'junegunn/fzf.vim'
-	use 'lervag/vimtex'
-	use 'Vonr/align.nvim'
-	use 'nvim-treesitter/nvim-treesitter'
-
-	-- https://github.com/MrcJkb/haskell-tools.nvim: haskell dev helper tools
 	use {
 		'MrcJkb/haskell-tools.nvim',
 		requires = {
@@ -57,7 +33,38 @@ require('packer').startup(function()
 		ft = {'hs', 'lhs'},
 		config = function() require('plugin.config.haskell-tools') end 
 	}
-	-- https://github.com/nvim-telescope/telescope.nvim
+   	use 'is0n/jaq-nvim'
+	use 'zyedidia/literate.vim'
+	use 'neovim/nvim-lspconfig'
+   	use { 
+		'williamboman/mason.nvim',
+		config = function() 
+			require('plugin.config.mason') 
+		end 
+	}
+        use 'benekastah/neomake'
+	use {
+		'nvim-tree/nvim-tree.lua',
+		config = function() require('plugin.config.nvim-tree') end 
+	}
+
+	use {
+		'vim-scripts/noweb.vim--McDermott',
+		ft = 'nw',
+		config = function() require('plugin.config.noweb') end
+	}
+
+	use 'nvim-treesitter/nvim-treesitter'
+
+	-- use {
+	-- 	'toppair/peek.nvim',
+	--	run = 'deno task --quiet build:fast'
+	-- 	ft = 'md',
+	-- 	config = function () require('plugin.config.peek') end
+	-- }
+
+
+        use 'preservim/tagbar' 
 	use {
 	  	'nvim-telescope/telescope.nvim', 
 		tag = '0.1.0',
@@ -68,6 +75,22 @@ require('packer').startup(function()
 	}
 
 	use 'luc-tielen/telescope_hoogle'
+
+        use 'tpope/vim-commentary'
+	use 'tpope/vim-fugitive' 
+	use 'RRethy/vim-hexokinase'
+	use 'tpope/vim-surround' 
+        use 'tc50cal/vim-terminal'
+	use {
+		'lervag/vimtex',
+		ft = 'tex',
+		config = function() 
+			vim.g.tex_flavor = 'latex'
+			vim.g.vimtex_view_method = 'zathura'
+			vim.g.vimtext_compiler_method = 'luatex'
+		end
+	}
+	use 'mg979/vim-visual-multi'
 	-- https://github.com/hkupty/iron.nvim: repl helper
 	-- use {'hkupty/iron.nvim', tag = "<most recent tag>"}
    	if ensure_packer() then	
